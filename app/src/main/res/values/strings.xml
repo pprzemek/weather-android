@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">weather</string>
+    <string name="permission_location_denied">Sorry, but app needs location permission so it can share weather information with you</string>
+    <string name="weather_wind_speed">Wind speed</string>
+    <string name="weather_feels_like">Feels like</string>
+    <string name="weather_visibility">Visibility</string>
+    <string name="weather_humidity">Humidity</string>
+    <string name="temperature">%.1f°</string>
+    <string name="temperature_max_min">H: %.1f° L: %.1f°</string>
+    <string name="kelvin_degree">"°K "</string>
+    <string name="fahrenheit_degree">"°F "</string>
+    <string name="celsius_degree">°C</string>
+</resources>
