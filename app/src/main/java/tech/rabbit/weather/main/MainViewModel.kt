@@ -11,6 +11,8 @@ import tech.rabbit.weather.data.model.OneCallWeather
 import javax.inject.Inject
 import android.location.Geocoder
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.withContext
 import tech.rabbit.weather.utils.UnitSystem
 import tech.rabbit.weather.utils.WeatherUtils
@@ -22,29 +24,23 @@ class MainViewModel @Inject constructor(
     private val repository: WeatherRepositoryImpl,
     application: Application
 ): AndroidViewModel(application) {
-    private val _oneCallWeather = MutableLiveData<OneCallWeather>()
-    val oneCallWeather: LiveData<OneCallWeather>
-        get() = _oneCallWeather
+    private val _oneCallWeather = MutableStateFlow<OneCallWeather?>(null)
+    val oneCallWeather = _oneCallWeather.asStateFlow()
 
-    private val _minMaxTemp = MutableLiveData<Pair<Double?, Double?>>()
-    val minMaxTemp: LiveData<Pair<Double?, Double?>>
-        get() = _minMaxTemp
+    private val _minMaxTemp = MutableStateFlow<Pair<Double?, Double?>?>(null)
+    val minMaxTemp = _minMaxTemp.asStateFlow()
 
-    private val _weatherImg = MutableLiveData<String>()
-    val weatherImg: LiveData<String>
-        get() = _weatherImg
+    private val _weatherImg = MutableStateFlow("")
+    val weatherImg = _weatherImg.asStateFlow()
 
-    private val _city = MutableLiveData<String>()
-    val city: LiveData<String>
-        get() = _city
+    private val _city = MutableStateFlow("")
+    val city = _city.asStateFlow()
 
-    private val _unitSystem = MutableLiveData<UnitSystem>()
-    val unitSystem: LiveData<UnitSystem>
-        get() = _unitSystem
+    private val _unitSystem = MutableStateFlow<UnitSystem?>(null)
+    val unitSystem = _unitSystem.asStateFlow()
 
-    private val _windowType = MutableLiveData(WindowType.LOADING)
-    val windowType: LiveData<WindowType>
-        get() = _windowType
+    private val _windowType = MutableStateFlow(WindowType.LOADING)
+    val windowType = _windowType.asStateFlow()
 
     fun init() {
         viewModelScope.launch {

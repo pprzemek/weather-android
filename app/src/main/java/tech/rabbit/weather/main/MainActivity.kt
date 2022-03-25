@@ -11,7 +11,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.animation.Crossfade
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.runtime.collectAsState
 import androidx.core.app.ActivityCompat
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -58,7 +58,7 @@ class MainActivity : AppCompatActivity() {
 
     @Composable
     fun WindowSelection() {
-        val selectedWindow = mainViewModel.windowType.observeAsState()
+        val selectedWindow = mainViewModel.windowType.collectAsState()
         Crossfade(selectedWindow.value) { type ->
             when (type) {
                 MainViewModel.WindowType.LOADING -> LoadingWindow()

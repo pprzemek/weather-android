@@ -12,8 +12,8 @@ import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -44,11 +44,11 @@ import tech.rabbit.weather.utils.UnitSystem
 
 @Composable
 fun WeatherWindow(mainViewModel: MainViewModel) {
-    val oneCallWeather: OneCallWeather? by mainViewModel.oneCallWeather.observeAsState()
-    val minMaxTemp: Pair<Double?, Double?>? by mainViewModel.minMaxTemp.observeAsState()
-    val weatherImgUrl: String? by mainViewModel.weatherImg.observeAsState()
-    val city: String? by mainViewModel.city.observeAsState()
-    val unitSystem: UnitSystem? by mainViewModel.unitSystem.observeAsState()
+    val oneCallWeather: OneCallWeather? by mainViewModel.oneCallWeather.collectAsState()
+    val minMaxTemp: Pair<Double?, Double?>? by mainViewModel.minMaxTemp.collectAsState()
+    val weatherImgUrl: String? by mainViewModel.weatherImg.collectAsState()
+    val city: String? by mainViewModel.city.collectAsState()
+    val unitSystem: UnitSystem? by mainViewModel.unitSystem.collectAsState()
     Column (
         modifier = Modifier.background(color = MaterialTheme.colors.background)
     ){
